@@ -1,3 +1,3 @@
 #!/bin/bash
 export PYTHONPATH=$PYTHONPATH:$(pwd)
-streamlit run src/data/dashboard.pyg
+streamlit run src/data/dashboard.py
