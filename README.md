@@ -21,7 +21,7 @@ $ pip install -r requirements.txt
 and
 
 ``` bash
-$ source setup.sh
+$ source src/data/setup.sh
 ```
 
 ### You can run with docker:
