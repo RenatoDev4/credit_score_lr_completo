@@ -1,9 +1,3 @@
-
-import os
-
-if os.path.exists("setup.sh"):
-    os.system("bash setup.sh")
-
 import streamlit as st
 
 from src.models.predict_model import (apply_transformations, fx_score,
