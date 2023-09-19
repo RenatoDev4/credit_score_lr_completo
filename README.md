@@ -81,7 +81,7 @@ Project Organization
 ## Made by:
 
 Project made by **Renato Moraes** for his portfolio.<br>
-You can check the Data Science project running at: https://github.com/RenatoDev4/credit_score_lr_completo
+You can check the Data Science project running at: https://credit-score-renato.streamlit.app/
 
 
 --------
