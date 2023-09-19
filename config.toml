@@ -1,0 +1,7 @@
+[theme]
+primaryColor = "#001f3f"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F0F0F0"
+
+[theme.Widget]
+textColor = "#FFFFFF"
