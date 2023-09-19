@@ -1,1 +1,3 @@
-export PYTHONPATH=$PYTHONPATH:$PWD
+#!/bin/bash
+export PYTHONPATH=$PYTHONPATH:$(pwd)
+streamlit run src/data/dashboard.py
