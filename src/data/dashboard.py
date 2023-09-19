@@ -16,11 +16,9 @@ dataset_link = "https://www.kaggle.com/datasets/parisrohan/credit-score-classifi
 
 st.sidebar.title("Credit Card Score Model 💳")
 st.sidebar.markdown(f"**About Author:** {name}")
-st.sidebar.markdown(
-    f"**[LinkedIn]({linkedin_url})** | **[GitHub]({github_url})**")
+st.sidebar.markdown(f"**Specialization areas:** {title}")
 st.sidebar.markdown(f"**Professional Connections:**")
-st.sidebar.markdown(
-    f"**[LinkedIn]({linkedin_url})** | **[GitHub]({github_url})**")
+st.sidebar.markdown(f"**[LinkedIn]({linkedin_url})** | **[GitHub]({github_url})**")
 
 st.sidebar.divider()
 
