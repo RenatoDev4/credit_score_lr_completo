@@ -29,7 +29,7 @@ st.sidebar.write(
 
 st.sidebar.divider()
 
-st.sidebar.markdown("**Used dataset ✅**")
+st.sidebar.markdown("**Dataset used ✅**")
 st.sidebar.write(f"**[Kaggle]( {dataset_link} )**   ")
 
 st.sidebar.divider()
@@ -40,9 +40,11 @@ st.sidebar.write("KS2: **0.363**")
 
 
 st.title("Credit Score Model - Credit Card")
-st.markdown("""
+st.markdown(
+    """
 This is a DEMO application of a machine learning model to assess the probability of a customer defaulting on a credit card application. Simply fill in the fields below with your customer details and click 'Evaluate'.
-""")
+"""
+)
 
 annual_income = st.number_input(
     "Client's annual salary", min_value=0, help="Enter client annual salary, Ex: 50000"
@@ -62,14 +64,25 @@ changed_credit_limit = st.number_input(
     min_value=0,
     help="Has the customer ever had their limit changed? How many?",
 )
-num_credit_inquiries = st.number_input("Number of credit inquiries", min_value=0,
-                                       help="How many credit inquiries has the customer had in the last few months?")
+num_credit_inquiries = st.number_input(
+    "Number of credit inquiries",
+    min_value=0,
+    help="How many credit inquiries has the customer had in the last few months?",
+)
 credit_mix = st.number_input(
-    "Credit Mix", min_value=0, max_value=1, help='1 = GOOD, 0 = BAD')
-outstanding_debt = st.number_input("Outstanding Debit", min_value=0,
-                                   help="The total as well as interest amount of a debt that has yet to be paid")
+    "Credit Mix", min_value=0, max_value=1, help="1 = GOOD, 0 = BAD"
+)
+outstanding_debt = st.number_input(
+    "Outstanding Debit",
+    min_value=0,
+    help="The total as well as interest amount of a debt that has yet to be paid",
+)
 payment_of_min_amount = st.number_input(
-    "Payment of min amount", min_value=0, max_value=1, help="Does the customer pay the minimum of their invoice? YES=1, NO=0")
+    "Payment of min amount",
+    min_value=0,
+    max_value=1,
+    help="Does the customer pay the minimum of their invoice? YES=1, NO=0",
+)
 
 if st.button("Evaluate"):
     df_copy = apply_transformations(

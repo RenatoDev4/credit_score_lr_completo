@@ -18,15 +18,31 @@ from src.features.config import (ANNUAL_INCOME_0, ANNUAL_INCOME_1,
 
 
 def apply_transformations(
-    annual_income,
-    interest_rate,
-    delay_from_due_date,
-    changed_credit_limit,
-    num_credit_inquiries,
-    credit_mix,
-    outstanding_debt,
-    payment_of_min_amount,
-):
+    annual_income: float,
+    interest_rate: float,
+    delay_from_due_date: float,
+    changed_credit_limit: float,
+    num_credit_inquiries: float,
+    credit_mix: float,
+    outstanding_debt: float,
+    payment_of_min_amount: float,
+) -> pd.DataFrame:
+    """
+    Apply transformations to the given input parameters according to the predefined rules.
+
+    Args:
+        annual_income (float): The annual income of the individual.
+        interest_rate (float): The interest rate for the individual.
+        delay_from_due_date (float): The delay from the due date for the individual.
+        changed_credit_limit (float): The changed credit limit for the individual.
+        num_credit_inquiries (float): The number of credit inquiries for the individual.
+        credit_mix (float): The credit mix for the individual.
+        outstanding_debt (float): The outstanding debt for the individual.
+        payment_of_min_amount (float): The payment of the minimum amount for the individual.
+
+    Returns:
+        pandas.DataFrame: A DataFrame with the transformed values for each input parameter.
+    """
     rules = {
         "Annual_Income": {
             (annual_income < ANNUAL_INCOME_0[0]): ANNUAL_INCOME_0[1],
@@ -116,7 +132,34 @@ def apply_transformations(
     return df_copy
 
 
-def pred_score(df):
+def pred_score(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Calculate a prediction score based on input features in the DataFrame.
+
+    This function calculates a prediction score using the logistic regression model,
+    which is based on the input features provided in the DataFrame. It first computes
+    a linear prediction score and then applies the logistic function to obtain the
+    final score.
+
+    Args:
+        df (pd.DataFrame): A DataFrame containing the input features.
+            The DataFrame should have the following columns:
+            - 'Intercept': Intercept term of the logistic regression model.
+            - 'Annual_Income': The annual income of the individual.
+            - 'Interest_Rate': The interest rate for the individual.
+            - 'Delay_from_due_date': The delay from the due date for the individual.
+            - 'Changed_Credit_Limit': The changed credit limit for the individual.
+            - 'Num_Credit_Inquiries': The number of credit inquiries for the individual.
+            - 'Credit_Mix': The credit mix for the individual.
+            - 'Outstanding_Debt': The outstanding debt for the individual.
+            - 'Payment_of_Min_Amount': The payment of the minimum amount for the individual.
+
+    Returns:
+        pd.DataFrame: A DataFrame containing the prediction score.
+            The DataFrame will have two additional columns:
+            - 'pred_lin': The linear prediction score.
+            - 'score': The final prediction score obtained by applying the logistic function.
+    """
     df["pred_lin"] = (
         df["Intercept"]
         + df["Annual_Income"]
@@ -133,7 +176,23 @@ def pred_score(df):
     return df
 
 
-def fx_score(score):
+def fx_score(score: float) -> int:
+    """
+    Calculate the FX score based on the given input score according to predefined breakpoints.
+
+    Args:
+        score (float): The input score to calculate the FX score.
+
+    Returns:
+        int: The calculated FX score based on predefined breakpoints.
+            Returns -1 if the input score is greater than the highest predefined breakpoint.
+
+    Note:
+        This function uses predefined breakpoints to map an input score to an FX score.
+        If the input score is less than or equal to the first breakpoint, it returns the corresponding FX score.
+        If the input score falls between two consecutive breakpoints, it returns the FX score associated with the lower breakpoint.
+        If the input score is greater than the highest predefined breakpoint, it returns -1.
+    """
     broken_developed = BROKEN_DEVELOPED
 
     if score <= broken_developed[0]:
